@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="AdventureWorksLT2019"
+  DTS:DTSID="{160E9561-EAF1-434E-9D8A-23024B5F5E54}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=AH-PC\SQLEXPRESS;Initial Catalog=AdventureWorksLT2019_SourceDB;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package-{160E9561-EAF1-434E-9D8A-23024B5F5E54}AH-PC\SQLEXPRESS.AdventureWorksLT2019;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

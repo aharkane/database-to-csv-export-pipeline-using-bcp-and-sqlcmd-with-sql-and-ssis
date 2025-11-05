@@ -1,0 +1,569 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/19/2025 3:57:40 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AH-PC"
+  DTS:CreatorName="AH-PC\harka"
+  DTS:DTSID="{F1394480-93EA-43CD-A090-4CD998553BEA}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Adsress ETLs"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{13CF948B-799E-4320-9B33-A67127F196C3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Address csv File Conn.Manger]"
+      DTS:CreationName="FLATFILE"
+      DTS:DTSID="{8F21296B-8E91-4EEA-837E-EC1B53AC2C99}"
+      DTS:ObjectName="Address csv File Conn.Manger">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowsToSkip="1"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:ColumnNamesInFirstDataRow="True"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\DimTables\Address.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:DataType="2"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AddressID"
+              DTS:DTSID="{06A9EE85-3F19-4DB3-B397-73320E8C7E13}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="36"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AddressLine1"
+              DTS:DTSID="{00F86F82-8733-45E4-84B9-2BB521967653}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="20"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="AddressLine2"
+              DTS:DTSID="{5F0B59A3-3384-46A8-8355-E97DA01C0255}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="17"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="City"
+              DTS:DTSID="{A72F09A2-649B-4506-A174-AD203D569275}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="16"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="StateProvince"
+              DTS:DTSID="{05F895C6-E26D-42A3-9BF4-808C6990835A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="16"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="CountryRegion"
+              DTS:DTSID="{26970B1F-2C0B-4DA8-B9AA-942662AE952A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="14"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="PostalCode"
+              DTS:DTSID="{8D180497-DEDA-40C8-A5D8-8F42A8BBACC2}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="36"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="rowguid"
+              DTS:DTSID="{EF59ED24-7665-4E6A-B3A9-1445E76E4B02}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:DataType="304"
+              DTS:TextQualified="True"
+              DTS:ObjectName="ModifiedDate"
+              DTS:DTSID="{B7CCB404-8068-4B41-827F-BE911251B187}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Address Data Flow"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B6B03276-F856-4310-B9CA-2406A07983A3}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Address Data Flow"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Address Data Flow\Address csv File Source"
+              componentClassID="Microsoft.FlatFileSource"
+              contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Flat File Source"
+              localeId="1033"
+              name="Address csv File Source"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Specifies whether zero-length columns are treated as null."
+                  name="RetainNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                  name="FileNameColumnName"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Address Data Flow\Address csv File Source.Connections[FlatFileConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Address csv File Conn.Manger]"
+                  connectionManagerRefId="Package.ConnectionManagers[Address csv File Conn.Manger]"
+                  name="FlatFileConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output]"
+                  name="Flat File Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[AddressID]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[AddressID]"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[AddressID]"
+                      name="AddressID"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[AddressLine]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
+                      length="36"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[AddressLine]"
+                      name="AddressLine"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      length="17"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[City]"
+                      name="City"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[StateProvince]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[StateProvince]"
+                      length="16"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[StateProvince]"
+                      name="StateProvince"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[CountryRegion]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[CountryRegion]"
+                      length="16"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[CountryRegion]"
+                      name="CountryRegion"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[PostalCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[PostalCode]"
+                      length="14"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[PostalCode]"
+                      name="PostalCode"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[ModifiedDate]"
+                      dataType="dbTimeStamp2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[ModifiedDate]"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].Columns[ModifiedDate]"
+                      name="ModifiedDate"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the data is in binary format."
+                          name="UseBinaryFormat">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[AddressID]"
+                      dataType="i2"
+                      name="AddressID" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="AddressLine1" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[AddressLine2]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="AddressLine2" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[City]"
+                      codePage="1252"
+                      dataType="str"
+                      length="17"
+                      name="City" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[StateProvince]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="StateProvince" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[CountryRegion]"
+                      codePage="1252"
+                      dataType="str"
+                      length="16"
+                      name="CountryRegion" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[PostalCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="14"
+                      name="PostalCode" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[rowguid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="36"
+                      name="rowguid" />
+                    <externalMetadataColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output].ExternalColumns[ModifiedDate]"
+                      dataType="dbTimeStamp2"
+                      name="ModifiedDate" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output]"
+                  isErrorOut="true"
+                  name="Flat File Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      codePage="1252"
+                      dataType="text"
+                      description="Flat File Source Error Output Column"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                      name="Flat File Source Error Output Column" />
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Address Data Flow\Address Table"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Address Table"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Address Data Flow\Address Table.Connections[OleDbConnection]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Address Data Flow\Address Table.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <externalMetadataColumns
+                    isUsed="True" />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Address Data Flow\Address Table.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Address Data Flow\Address Table.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Address Data Flow\Address Table.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Address Data Flow\Address Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Address Data Flow\Address Table.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Address Data Flow.Paths[Flat File Source Output]"
+              endId="Package\Address Data Flow\Address Table.Inputs[OLE DB Destination Input]"
+              name="Flat File Source Output"
+              startId="Package\Address Data Flow\Address csv File Source.Outputs[Flat File Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="166.4,41.6"
+          Id="Package\Address Data Flow"
+          TopLeft="294.999988277754,82.3333339876599" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Address Data Flow">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.6,41.6"
+          Id="Package\Address Data Flow\Address Table"
+          TopLeft="309.166654381488,200.200001591047" />
+        <NodeLayout
+          Size="190.4,41.6"
+          Id="Package\Address Data Flow\Address csv File Source"
+          TopLeft="279.9999888738,65.0000005165736" />
+        <EdgeLayout
+          Id="Package\Address Data Flow.Paths[Flat File Source Output]"
+          TopLeft="378.583321627644,106.600000516574">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,93.6000010744731"
+              Start="0,0"
+              End="0,86.1000010744731">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,86.1000010744731" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
