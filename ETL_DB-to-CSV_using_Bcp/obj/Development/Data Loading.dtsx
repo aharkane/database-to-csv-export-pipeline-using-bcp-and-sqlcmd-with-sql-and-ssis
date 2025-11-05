@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/18/2025 1:29:36 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AH-PC"
+  DTS:CreatorName="AH-PC\harka"
+  DTS:DTSID="{9F9B7550-FFEC-40D3-AA63-D00789FE07A6}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5467.0"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Data Loading"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{347D702D-31A4-47EA-93A8-F7B85E3389B0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{45401B78-782D-4650-8ED2-4E3E9BC18FDD}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="LEFT(@[User::CurrentTable] , 5 )  == &quot;Sales&quot; &#xA;? &#xA;@[User::_FactTables_FolderName]  + @[User::CurrentTable] + &quot;.csv&quot;&#xA;: &#xA;@[User::_DimTables_FolderName] + @[User::CurrentTable] + &quot;.csv&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFile">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\DimTables\.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEA0A13C-1EF6-4F1E-A00F-45E30A5F66F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentTable">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{3D0E1813-C4DD-40E9-A644-2638B71122CE}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;-S &quot; + @[User::_ServerName]&#xA;+&quot; -d &quot; + @[User::_DatabaseName]&#xA;+&quot; -E -W -s\&quot;,\&quot; -w 65535&quot;&#xA;+&quot; -Q \&quot;&quot; + @[User::SqlCmd_loadingScript] +&quot;\&quot;&quot;&#xA;+ &quot; -o&quot; +&quot;\&quot;&quot; + @[User::CurrentFile] + &quot;\&quot;&quot;&#xA;+ &quot; -f 1252&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SqlCmd_Arg">
+      <DTS:VariableValue
+        DTS:DataType="8">-S AH-PC\SQLEXPRESS -d AdventureWorksLT2019_SourceDB -E -W -s"," -w 65535 -Q "SET NOCOUNT ON; SELECT * FROM SalesLT." -o"D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\DimTables\.csv" -f 1252</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{9DEDC4F4-22CD-4A11-B78F-91C0E3E08927}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="&quot;SET NOCOUNT ON; SELECT * FROM &quot;  &#xA;+ @[User::_SchemaName] + &quot;.&quot; +  @[User::CurrentTable]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SqlCmd_loadingScript">
+      <DTS:VariableValue
+        DTS:DataType="8">SET NOCOUNT ON; SELECT * FROM SalesLT.</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{B41CC4DA-3F13-4CB7-97E4-84A23A00C709}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TableList">
+      <DTS:VariableValue
+        DTS:DataSubType="ManagedSerializable"
+        DTS:DataType="13">
+        <SOAP-ENV:Envelope xmlns:clr="http://schemas.microsoft.com/soap/encoding/clr/1.0" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+          <SOAP-ENV:Body>
+            <xsd:anyType
+              id="ref-1"></xsd:anyType>
+          </SOAP-ENV:Body>
+        </SOAP-ENV:Envelope>
+      </DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{7F13BE0C-6D80-44D0-8881-E857D9E2EBF8}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="_DatabaseName">
+      <DTS:VariableValue
+        DTS:DataType="8">AdventureWorksLT2019_SourceDB</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{838C08F5-42E4-48D8-929B-575F331D3F92}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="_DimTables_FolderName">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\DimTables\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{E14756D8-47CA-4B78-A5E5-1C3A91C7DC6F}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="_FactTables_FolderName">
+      <DTS:VariableValue
+        DTS:DataType="8">D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\FactTables\</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{BEDC4599-FB98-488D-8658-E5FEDF0936F6}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="_SchemaName">
+      <DTS:VariableValue
+        DTS:DataType="8">SalesLT</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{54BDC063-86B7-4390-85C7-7979AAC192A0}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="_ServerName">
+      <DTS:VariableValue
+        DTS:DataType="8">AH-PC\SQLEXPRESS</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Foreach Loop Container"
+      DTS:CreationName="STOCK:FOREACHLOOP"
+      DTS:Description="Foreach Loop Container"
+      DTS:DTSID="{EC19EB66-68B0-4B3C-A8AA-EF9ED318BBFC}"
+      DTS:ExecutableType="STOCK:FOREACHLOOP"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Foreach Loop Container">
+      <DTS:ForEachEnumerator
+        DTS:CreationName="Microsoft.ForEachADOEnumerator"
+        DTS:DTSID="{F7A82A05-C560-45F6-AFE1-C33580FB6159}"
+        DTS:ObjectName="{F7A82A05-C560-45F6-AFE1-C33580FB6159}">
+        <DTS:ObjectData>
+          <FEEADO
+            EnumType="EnumerateRowsInFirstTable"
+            VarName="User::TableList" />
+        </DTS:ObjectData>
+      </DTS:ForEachEnumerator>
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{499646BF-466F-4E63-8489-682D058CF712}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="StdErr">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:DTSID="{E1DE4D47-79A0-4B39-9282-DCF9E6795F71}"
+          DTS:IncludeInDebugDump="2345"
+          DTS:Namespace="User"
+          DTS:ObjectName="StdOut">
+          <DTS:VariableValue
+            DTS:DataType="8"
+            xml:space="preserve"></DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Foreach Loop Container\Execute Process Task"
+          DTS:CreationName="Microsoft.ExecuteProcess"
+          DTS:Description="Execute Process Task"
+          DTS:DTSID="{8FCCD68F-A944-4ED6-B039-2C698E252896}"
+          DTS:ExecutableType="Microsoft.ExecuteProcess"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute Process Task"
+          DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="Arguments">@[User::SqlCmd_Arg]</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <ExecuteProcessData
+              Executable="C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\SQLCMD.EXE"
+              Arguments="-S AH-PC\SQLEXPRESS -d AdventureWorksLT2019_SourceDB -E -W -s&quot;,&quot; -w 65535 -Q &quot;SET NOCOUNT ON; SELECT * FROM SalesLT.&quot; -o&quot;D:\3. Portfolio\1. SSIS\2. AdventureWorks Sales Analysis\Data\DimTables\.csv&quot; -f 1252"
+              StandardOutputVariable="User::StdOut"
+              StandardErrorVariable="User::StdErr" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:ForEachVariableMappings>
+        <DTS:ForEachVariableMapping
+          DTS:CreationName=""
+          DTS:DTSID="{2AB9CFBC-3E64-4333-B38B-8C95350523E2}"
+          DTS:ObjectName="{2AB9CFBC-3E64-4333-B38B-8C95350523E2}"
+          DTS:ValueIndex="0"
+          DTS:VariableName="User::CurrentTable" />
+      </DTS:ForEachVariableMappings>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Grt Table List"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Grt Table List"
+      DTS:DTSID="{DCCAF3BC-3232-4644-8053-A8293BA4C9F1}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Grt Table List"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{160E9561-EAF1-434E-9D8A-23024B5F5E54}"
+          SQLTask:SqlStatementSource="SELECT t.name AS TableName&#xA;FROM sys.tables t&#xA;JOIN sys.schemas s ON s.schema_id = t.schema_id&#xA;WHERE t.is_ms_shipped = 0&#xA;  AND s.name NOT IN ('sys','cdc', 'dbo')&#xA;ORDER BY s.name, t.name;"
+          SQLTask:ResultType="ResultSetType_Rowset" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="0"
+            SQLTask:DtsVariableName="User::TableList" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{536D6E4F-DBF3-48B7-8A43-18AC5CAAB5D8}"
+      DTS:From="Package\Grt Table List"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Foreach Loop Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\Foreach Loop Container\Execute Process Task"
+          TopLeft="65.6110994440542,59.6629650265788" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="325.6,183.2"
+          Size="325.6,226.4"
+          Id="Package\Foreach Loop Container"
+          TopLeft="205.740732565339,149.731482544283" />
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\Grt Table List"
+          TopLeft="268.888878204205,32.3555558126944" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="339.288878204205,73.9555558126945">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="29.2518543611341,75.7759267315886"
+              Start="0,0"
+              End="29.2518543611341,68.2759267315886">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.8879633657943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.8879633657943"
+                    Point2="0,37.8879633657943"
+                    Point3="4,37.8879633657943" />
+                  <mssgle:LineSegment
+                    End="25.2518543611341,37.8879633657943" />
+                  <mssgle:CubicBezierSegment
+                    Point1="25.2518543611341,37.8879633657943"
+                    Point2="29.2518543611341,37.8879633657943"
+                    Point3="29.2518543611341,41.8879633657943" />
+                  <mssgle:LineSegment
+                    End="29.2518543611341,68.2759267315886" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

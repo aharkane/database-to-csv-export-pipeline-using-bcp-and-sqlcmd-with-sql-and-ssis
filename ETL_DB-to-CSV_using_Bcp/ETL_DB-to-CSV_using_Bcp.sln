@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36623.8 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "ETL_DB-to-CSV_using_Bcp", "ETL_DB-to-CSV_using_Bcp.dtproj", "{2F915E71-45A1-430A-9D26-A22598AE6ABB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2F915E71-45A1-430A-9D26-A22598AE6ABB}.Development|Default.ActiveCfg = Development
+		{2F915E71-45A1-430A-9D26-A22598AE6ABB}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D3E9CE96-1A44-4F19-B7B6-9355C4365200}
+	EndGlobalSection
+EndGlobal
