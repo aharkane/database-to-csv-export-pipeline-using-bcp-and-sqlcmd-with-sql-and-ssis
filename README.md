@@ -1,4 +1,4 @@
-# Database-to-CSV Export Pipeline using SQL and SSIS
+# Database-to-CSV Export Pipeline using BCP and SqlCmd with SQL and SSIS
 
 ## Table of Contents
 
