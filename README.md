@@ -1,5 +1,4 @@
 # SSIS Data Extraction Packages: Database-to-CSV Export Pipeline
----
 
 ## Table of Contents
 
