@@ -3,9 +3,8 @@
 ## Table of Contents
 
 1. [Overview](#overview)
-3. [Project Architecture](#project-architecture)
-4. [Package 1: ETL DB-to-CSV using BCP](#package-1-etl-db-to-csv-using-bcp)
-5. [Package 2: ETL DB-to-CSV using SqlCmd](#package-2-etl-db-to-csv-using-sqlcmd)
+2. [Package 1: ETL DB-to-CSV using BCP](#package-1-etl-db-to-csv-using-bcp)
+3. [Package 2: ETL DB-to-CSV using SqlCmd](#package-2-etl-db-to-csv-using-sqlcmd)
 
 
 ---
@@ -17,64 +16,10 @@ Automated data warehouse to csv files export solution, with dynamic table proces
 ---
 
 
-## Project Architecture
-
-### High-Level Export Pattern
-
-```
-AdventureWorks 2022 DWH Database
-    ├── prod.DimProduct
-    ├── prod.DimCustomer
-    ├── prod.DimDate
-    ├── prod.DimGeography
-    ├── prod.FactInternetSales
-    └── prod.FactReseller
-    
-         ↓ [Get Table List]
-    
-    [Execute SQL Query]
-    ↓ [Retrieves list of all tables in prod schema]
-    
-    [Dynamic Variable: TableList]
-    
-         ↓ [Foreach Loop Container]
-    
-    For Each Table in TableList:
-    ├── Set CurrentTable variable
-    ├── Generate dynamic export command
-    ├── Execute command-line utility (BCP or SqlCmd)
-    └── Output: [TableName].csv
-    
-         ↓ [File Output]
-    
-    Data\DimTables\ (for Dimension tables)
-    Data\FactTables\ (for Fact tables)
-    Data\ (for mixed output)
-```
-
-### Processing Approaches Comparison
-
-| Aspect | BCP Package | SqlCmd Package |
-|--------|-------------|----------------|
-| **Utility** | BCP.EXE (Bulk Copy Program) | SQLCMD.EXE (Command-line Tool) |
-| **Specialization** | Dedicated bulk data movement | General-purpose T-SQL execution |
-| **Performance** | Optimized for high-volume bulk operations | Flexible query execution |
-| **Delimiter Control** | Native `-t` flag for separators | `-s` flag for separator specification |
-| **Output Control** | Query output formatting | File redirection via `-o` flag |
-| **Authentication** | Integrated Windows auth (`-T`) | Windows (`-E`) or SQL auth |
-| **Use Case** | Large-scale bulk extraction | Complex queries, specific formatting |
-| **Table Separation** | Single output folder | Dimension vs. Fact folder separation |
-| **Width Control** | Default or fixed widths | Explicit column width (`-w`) |
-
----
-
 ## Package 1: ETL DB-to-CSV using BCP
-
-### Purpose
-
 Database extraction using Bulk Copy Program (BCP) utility, optimized for rapid export of database tables to CSV format with minimal transformation overhead.
 
-### User Variables
+**User Variables**
 
 | Variable Name | Data Type | Purpose | Example Value |
 |---------------|-----------|---------|---|
@@ -87,7 +32,7 @@ Database extraction using Bulk Copy Program (BCP) utility, optimized for rapid e
 | `TableList` | Array | Enumerated table names | (Populated by SQL query) |
 | `BCPCommand` | String (Expression) | Complete BCP command line | See below |
 
-### Execution Workflow Summary
+**Execution Workflow Summary**
 
 ```
 Initialize
@@ -107,9 +52,9 @@ END FOREACH LOOP
 All tables exported as CSV files
 ```
 
-### Critical Variable: BCPCommand Expression
+**Critical Variable:**
 
-**Expression Logic**:
+*BCPCommand Expression*:
 ```
 "SELECT * FROM [" + @[User::CurrentSchema] + "].[" + @[User::CurrentTable] + 
 "]" queryout "" + @[User::CurrentFile] + 
@@ -117,7 +62,7 @@ All tables exported as CSV files
 " -d " + @[User::DatabaseName] + " -T -C 65001"
 ```
 
-**Breakdown**:
+*Breakdown*:
 - `SELECT * FROM [prod].[TableName]`: Dynamic query selecting all columns
 - `queryout`: BCP mode for exporting query results to file
 - `""`: Quoted file path with dynamic concatenation
@@ -127,13 +72,13 @@ All tables exported as CSV files
 - `-T`: Trusted (Windows) authentication
 - `-C 65001`: UTF-8 code page for international characters
 
-**Sample Execution for DimProduct**:
+*Sample Execution for DimProduct*:
 ```
 bcp.exe "SELECT * FROM [prod].[DimProduct]" queryout "D:\Data\DimProduct.csv" 
 -c -t, -r\n -q -S . -d AdvWrks2022_DWH -T -C 65001
 ```
 
-### Advantages of BCP Approach
+**Advantages of BCP Approach**
 
 - **Extreme Performance**: BCP is fastest native SQL Server bulk operation tool
 - **Minimal Overhead**: Direct database-to-file with no intermediate staging
@@ -143,11 +88,9 @@ bcp.exe "SELECT * FROM [prod].[DimProduct]" queryout "D:\Data\DimProduct.csv"
 
 ## Package 2: ETL DB-to-CSV using SqlCmd
 
-### Purpose
-
 Flexible database extraction using the versatile SqlCmd command-line utility, with intelligent table classification (Dimensions vs. Facts) and organized output folder structure for business intelligence workflows.
 
-### User Variables
+**User Variables**
 
 | Variable Name | Data Type | Purpose | Example Value |
 |---|---|---|---|
@@ -163,7 +106,7 @@ Flexible database extraction using the versatile SqlCmd command-line utility, wi
 | `TableList` | Array | Enumerated table names | (Populated by SQL query) |
 
 
-### Execution Workflow Summary
+**Execution Workflow Summary**
 
 ```
 Initialize
@@ -185,29 +128,29 @@ END FOREACH LOOP
 All tables exported as CSV files
 ```
 
-### Critical Variable: 
-**1. CurrentFile Expression**
+**Critical Variable:**   
+*1. CurrentFile Expression*
 ```
 LEFT(@[User::CurrentTable], 3) == "Dim" 
 ? @[User::_DimTables_FolderName] + @[User::CurrentTable] + ".csv" 
 : @[User::_FactTables_FolderName] + @[User::CurrentTable] + ".csv"
 ```
-*Interpretation*: 
+*Breakdown*: 
 - **If** table name starts with "Dim" → Route to DimTables folder
 - **Else** (Fact tables) → Route to FactTables folder
 - 
 
-**2. SqlCmd_loadingScript Expression**
+*2. SqlCmd_loadingScript Expression*
 
 ```
 "SET NOCOUNT ON; SELECT * FROM " + @[User::_SchemaName] + "." + @[User::CurrentTable]
 ```
-*Interpretation*:
+*Breakdown*:
 - `SET NOCOUNT ON`: Suppresses row count message from result set (cleaner output)
 - `SELECT * FROM prod.[CurrentTable]`: Dynamic query selecting all columns
 
 
-**3. SqlCmd_Arg Expression**
+*3. SqlCmd_Arg Expression*
 
 ```
 "-S " + @[User::_ServerName] +
@@ -218,7 +161,7 @@ LEFT(@[User::CurrentTable], 3) == "Dim"
 " -f 65001"
 ```
 
-*Interpretation*:
+*Breakdown*:
 - `-S .`: Server name
 - `-d AdvWrks2022_DWH`: Database name
 - `-E`: Trusted connection (Windows authentication); `-W`: Remove trailing spaces from each field; `-s`;`: Separator character (semicolon); `-w 65535`: Column width (very wide to prevent truncation)
@@ -227,8 +170,7 @@ LEFT(@[User::CurrentTable], 3) == "Dim"
 - `-f 65001`: Code page (UTF-8)
 
 
-
-### Advantages of SqlCmd Approach
+**Advantages of SqlCmd Approach**
 
 - **Flexibility**: General-purpose T-SQL execution with complex query support
 - **Organized Separation**: Intelligent folder routing
@@ -237,8 +179,21 @@ LEFT(@[User::CurrentTable], 3) == "Dim"
 
 ---
 
+
+
+
 ## Conclusion
 
-These SSIS packages represent enterprise-grade database extraction solutions showcasing two powerful approaches to command-line integration. The BCP-based package emphasizes raw performance for large-scale exports, while the SqlCmd-based package demonstrates flexibility and organization for business intelligence workflows. Together, they exemplify mastery of SSIS advanced techniques, command-line tool integration, and data warehousing best practices.
+**Processing Approaches Comparison**
 
-The variable-driven architecture, expression-based command generation, and intelligent table classification demonstrate production-ready engineering suitable for complex enterprise data integration scenarios.
+| Aspect | BCP Package | SqlCmd Package |
+|--------|-------------|----------------|
+| **Utility** | BCP.EXE (Bulk Copy Program) | SQLCMD.EXE (Command-line Tool) |
+| **Specialization** | Dedicated bulk data movement | General-purpose T-SQL execution |
+| **Performance** | Optimized for high-volume bulk operations | Flexible query execution |
+| **Delimiter Control** | Native `-t` flag for separators | `-s` flag for separator specification |
+| **Output Control** | Query output formatting | File redirection via `-o` flag |
+| **Authentication** | Integrated Windows auth (`-T`) | Windows (`-E`) or SQL auth |
+| **Use Case** | Large-scale bulk extraction | Complex queries, specific formatting |
+| **Table Separation** | Single output folder | Dimension vs. Fact folder separation |
+| **Width Control** | Default or fixed widths | Explicit column width (`-w`) |
